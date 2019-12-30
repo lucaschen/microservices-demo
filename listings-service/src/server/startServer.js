@@ -10,7 +10,7 @@ const PORT = accessEnv("PORT", 7100);
 
 const app = express();
 
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 app.use(
   cors({
