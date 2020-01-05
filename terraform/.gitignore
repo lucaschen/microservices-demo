@@ -1,0 +1,15 @@
+# Terraform configuration
+.terraform/
+
+# Terraform state
+terraform.tfstate
+terraform.tfstate.backup
+
+# Terraform variables
+terraform.tfvars
+
+# Public keys
+*.pem
+
+# Private keys
+*.key

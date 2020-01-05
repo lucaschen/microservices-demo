@@ -18,3 +18,7 @@ docker-compose up
 yarn
 yarn watch
 ```
+
+## Deploy
+
+Check out my video series for a step-by-step tutorial on how to deploy this.

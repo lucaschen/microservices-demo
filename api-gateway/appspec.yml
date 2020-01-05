@@ -1,0 +1,28 @@
+# will be moved into root directory
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /opt/microservices-demo
+hooks:
+  BeforeInstall:
+    - location: api-gateway/aws/codedeploy/BeforeInstall/0_stopExistingProcess.sh
+      timeout: 300
+      runas: root
+    - location: api-gateway/aws/codedeploy/BeforeInstall/1_removePreviousInstallation.sh
+      timeout: 300
+      runas: ec2-user
+  AfterInstall:
+    - location: api-gateway/aws/codedeploy/AfterInstall/0_changePermissions.sh
+      timeout: 300
+      runas: root
+    - location: api-gateway/aws/codedeploy/AfterInstall/1_installPackages.sh
+      timeout: 300
+      runas: ec2-user
+    - location: api-gateway/aws/codedeploy/AfterInstall/2_buildBundle.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: api-gateway/aws/codedeploy/ApplicationStart.sh
+      timeout: 300
+      runas: root
