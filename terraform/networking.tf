@@ -11,7 +11,7 @@ resource "aws_internet_gateway" "microservices-demo" {
   vpc_id = aws_vpc.microservices-demo.id
 }
 
-resource "aws_route_table" "public" {
+resource "aws_route_table" "allow-outgoing-access" {
   vpc_id = aws_vpc.microservices-demo.id
 
   route {
@@ -20,18 +20,18 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "Public Route Table"
+    Name = "Route Table Allowing Outgoing Access"
   }
 }
 
 resource "aws_route_table_association" "microservices-demo-subnet-public" {
   subnet_id      = aws_subnet.microservices-demo-subnet-public.id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_route_table.allow-outgoing-access.id
 }
 
-resource "aws_route_table_association" "microservices-demo-subnet-private-REMOVETHIS" {
+resource "aws_route_table_association" "microservices-demo-subnet-private-1" {
   subnet_id      = aws_subnet.microservices-demo-subnet-private-1.id
-  route_table_id = aws_route_table.public.id
+  route_table_id = aws_route_table.allow-outgoing-access.id
 }
 
 resource "aws_security_group" "allow-internal-http" {
@@ -43,7 +43,7 @@ resource "aws_security_group" "allow-internal-http" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = [aws_vpc.microservices-demo.cidr_block]
   }
 }
 
@@ -56,7 +56,7 @@ resource "aws_security_group" "allow-internal-mysql" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16", "0.0.0.0/0"]
+    cidr_blocks = [aws_vpc.microservices-demo.cidr_block]
   }
 }
 
