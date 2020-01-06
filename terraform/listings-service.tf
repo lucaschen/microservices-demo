@@ -8,7 +8,6 @@ module "listings-service" {
   ami-id               = "ami-0119aa4d67e59007c"
   iam-instance-profile = module.listings-service-codedeploy.iam-instance-profile
   key-pair             = aws_key_pair.microservices-demo-key.key_name
-  key-pair-key         = "./microservices_demo.key"
   name                 = "listings-service"
   private-ip           = "10.0.1.5"
   subnet-id            = aws_subnet.microservices-demo-subnet-private-1.id

@@ -20,10 +20,6 @@ variable "key-pair" {
   type = string
 }
 
-variable "key-pair-key" {
-  type = string
-}
-
 variable "private-ip" {
   default = ""
   type    = string

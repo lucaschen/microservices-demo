@@ -8,7 +8,6 @@ module "users-service" {
   ami-id               = "ami-0119aa4d67e59007c"
   iam-instance-profile = module.users-service-codedeploy.iam-instance-profile
   key-pair             = aws_key_pair.microservices-demo-key.key_name
-  key-pair-key         = "./microservices_demo.key"
   name                 = "users-service"
   private-ip           = "10.0.1.6"
   subnet-id            = aws_subnet.microservices-demo-subnet-private-1.id
