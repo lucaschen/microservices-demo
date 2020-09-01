@@ -10,7 +10,7 @@ const accessEnv = (key, defaultValue) => {
 
   cache[key] = process.env[key];
 
-  return process.env[key];
+  return cache[key];
 };
 
 module.exports = accessEnv;
