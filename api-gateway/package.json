@@ -27,7 +27,7 @@
     "dotenv": "~8.2.0",
     "express": "~4.17.1",
     "got": "~10.1.0",
-    "lodash": "~4.17.15",
+    "lodash": "~4.17.21",
     "webpack": "~4.41.5",
     "webpack-cli": "~3.3.10",
     "webpack-node-externals": "~1.7.2"
